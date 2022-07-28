@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="jquery.maskMoney.min.js" type="text/javascript"></script>
+<title>Document</title>
+</head>
+<body>
+    <form action="" id="form" method="post">
+        <div>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" />
+        </div>
+        <div>
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" />
+        </div>
+        <div>
+            <label for="msg">Mensagem:</label>
+            <textarea id="msg"></textarea>
+        </div>
+        <div>
+            <label for="msg">alertar:</label>
+            <input type="checkbox" name="alertar" checked id="caixa">
+        </div>
+        <div>
+            <label for="msg">Salário:</label>
+            <input type="msg" name="alertar" id="salario">
+        </div>
+        <div>
+            <label for="msg">Enviar:</label>
+            <button value="Enviar" id="enviar">Enviar</button>
+        </div>
+    </form>
+</body>
+</html>
+<script>
+$(document).ready(function() {
+    $('#salario').maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: true});
+    //1 – Crie uma função que ao clicar no botão enviar imprima no console os valores dos seguinte inputs : Nome, E-mail e enviar
+    //2 – crie uma função que verifique o checkbox : alertar caso esteja checado imprima no console o usuário deve ser alertado , caso não deve imprimir o usuário não deseja ser alertado:
+    //3 – Crie uma função que que ao clicar no botão enviar valide os inputs caso os mesmo estejam vazios a cor borda do input deve ficar vermelha
+    //4 – Codifique um script que caso o campo salário não seja preenchido o botão enviar deve ser desabilitado
+    //5 – crie uma função que crie uma máscara monetária(R$) para salario.
+    $("form").submit(function(e){
+        if($('#nome').val() == '') {
+           $('#nome').css('border-color' , '#ff0000');
+        }
+        if($('#email').val() == '') {
+           $('#email').css('border-color' , '#ff0000');
+        }
+        if($('#msg').val() == '') {
+           $('#msg').css('border-color' , '#ff0000');
+        }
+        if($('#salario').val() == ''){
+            $('#enviar').prop("disabled",true);
+        }
+
+        e.preventDefault();
+        var nome = $('#nome').val();
+        console.log(nome);
+        var email = $('#email').val();
+        console.log(email);
+        var mensagem = $('#msg').val();
+        console.log(mensagem);
+        var checkbox = $('#caixa').is(":checked")
+        console.log(checkbox);
+        if(checkbox){
+            console.log('O Usuário' + nome + 'deve ser alertado!')
+        }else{
+            console.log('O Usuário' + nome + 'Não deveja ser alertado!')
+        }
+    });
+});    
+</script>
